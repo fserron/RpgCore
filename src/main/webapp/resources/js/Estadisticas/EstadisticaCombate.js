@@ -112,6 +112,17 @@ EstadisticaCombate.prototype.init = function() {
 		$('#eleccion').val('menu');
 	});
 	
+	$('#vsVictima').click(function(){
+		var victima = $('#vsVictima').prop("checked");
+		
+		if (victima){
+			$('.panelVictima').show();
+		} else {
+			$('.panelVictima').hide();
+		}
+		
+	});
+	
 	$('#aplicarDano').click(function(){
 //		$('#restarDefensa').prop("disabled", !this.checked);
 //		$('#sumarArma').prop("disabled", !this.checked);
@@ -123,7 +134,6 @@ EstadisticaCombate.prototype.init = function() {
 		$('#danoBase').prop('checked', false);
 		$('#carasDadoDano').val(6);
 	});
-	
 	
 	this.bindearBotonTirar();
 	this.valoresPorDefecto();
@@ -221,7 +231,7 @@ EstadisticaCombate.prototype.init = function() {
 	
 	//Ocultamos todos los divs que no van.
 	$('.Resultados').hide();
-//	$('.Suerte').hide();
+	$('.panelVictima').hide();
 };
 
 EstadisticaCombate.prototype.valoresPorDefecto = function(){
