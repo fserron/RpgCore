@@ -12,7 +12,8 @@ public class EstadisticasModel {
 	private Integer bono;
 	private TipoTiradaEnum tipoTirada;
 	private Integer numTiradas;
-	
+	private boolean victima;
+
 	private Integer defensa;
 	private Integer carasDado;
 	private Integer armadura;
@@ -76,6 +77,12 @@ public class EstadisticasModel {
 	}
 	public void setNumTiradas(Integer numTiradas) {
 		this.numTiradas = numTiradas;
+	}
+	public boolean isVictima() {
+		return victima;
+	}
+	public void setVictima(boolean victima) {
+		this.victima = victima;
 	}
 	public Integer getObjetivo() {
 		return objetivo;

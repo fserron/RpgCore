@@ -239,7 +239,7 @@ EstadisticaCombate.prototype.valoresPorDefecto = function(){
 	$('#dificultad').val(1);
 //	$('#retencion').val(1);
 //	$('#sustraccion').val(0);
-	$('#penalizacion').val(4);
+	$('#penalizacion').val(0);
 	
 	$('#carasDadoDano').val(6);
 	$('.dano').prop("disabled", true);

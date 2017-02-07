@@ -128,7 +128,7 @@
 								<tr>
 									<td colspan=2 align="center">
 										<span>¿Versus Victima?</span>
-										<input type="checkbox" id="vsVictima"/>
+										<form:checkbox path="victima" id="vsVictima"/>
 									</td>
 								</tr>
 								<tr>

@@ -69,30 +69,40 @@ public class EstadisticasController {
     	TiradaCombateDTO tirada = new TiradaCombateDTO();
     	boolean chance = false;
     	
+    	/*** Seccion Agresor ***/
     	view.setCantidadTiradas(model.getNumTiradas());
     	tirada.setCaras(model.getCarasDado());
     	
     	tirada.setAtributo(model.getAtributo());
     	tirada.setHabilidad(model.getHabilidad());
     	tirada.setSuerte(model.getSuerte());
-    	tirada.setBono(model.getBono());    	
-    	tirada.setDefensa(model.getDefensa());
-    	tirada.setArmadura(model.getArmadura());
+    	
     	tirada.setBonoArma(model.getBonoArma());
     	tirada.setBonoDanoBase(model.getBonoBase());
+    	tirada.setBono(model.getBono());
     	
-    	//Si la cantidad de dados es negativa, deberia setear la dificultad como la suerte
-		if (calcularDadosEmboque(model) <= 0 || model.isFatidica()){//Es una tirada fatidica
-			chance = true;
-			tirada.setDificultad(obtenerPuntuacion(model, 6));
-		} else {
-			tirada.setDificultad(obtenerPuntuacion(model, model.getDificultad()));
-		}
-		
+    	/*** Seccion Victima ***/
+    	tirada.setDefensa(model.getDefensa());
+    	tirada.setArmadura(model.getArmadura());
+    	
+    	if (model.isVictima()){
+    		//Si la cantidad de dados es negativa, deberia setear la dificultad como la suerte
+    		if (calcularDadosEmboque(model) <= 0 || model.isFatidica()){//Es una tirada fatidica
+    			chance = true;
+    			tirada.setDificultad(obtenerPuntuacion(model, 6));
+    		} else {
+    			tirada.setDificultad(obtenerPuntuacion(model, model.getDificultad()));
+    		}
+        	
+    	} else {
+    		tirada.setDificultad(obtenerPuntuacion(model, 1));
+    	}
+    	
     	tirada.setChance(chance);
     	tirada.setLucky(model.isConSuerte());
-    	
-    	tirada.setObjetivo(obtenerPuntuacion(model, model.getObjetivo()));
+
+		//Atributos a revisar
+		tirada.setObjetivo(obtenerPuntuacion(model, model.getObjetivo()));
     	tirada.setRetencion(obtenerPuntuacion(model, model.getRetencion()).getPuntuacion());
     	tirada.setSustraccion(obtenerPuntuacion(model, model.getSustraccion()).getPuntuacion());
     	tirada.setPenalizacion(obtenerPuntuacion(model, model.getPenalizacion()).getPuntuacion());
@@ -102,6 +112,7 @@ public class EstadisticasController {
     	tirada.setCarasDadoDano(model.getCarasDadoDano());
     	tirada.setRestarDefensa(model.isRestarDefensa());
     	tirada.setDanoBase(model.isDanoBase());
+    	
     	if (model.getValorExplosion() != null && model.getValorExplosion().intValue() != 0) {
     		tirada.setExplota(true);
     		tirada.setValorExplosion(model.getValorExplosion().intValue());
